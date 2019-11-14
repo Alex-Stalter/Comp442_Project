@@ -9,7 +9,7 @@ public class CreateWindow extends JFrame implements ActionListener{
     private JLabel labelUsername = new JLabel("Enter username: ");
     private JLabel labelPassword = new JLabel("Enter password: ");
     private JTextField textUsername = new JTextField(20);
-    public JPasswordField fieldPassword = new JPasswordField(20);
+    private JPasswordField fieldPassword = new JPasswordField(20);
     private JButton buttonLogin = new JButton("Login");
     private JPanel loginPane = new JPanel(new GridBagLayout());
     public void loginWindow(){
