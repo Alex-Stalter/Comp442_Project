@@ -45,7 +45,8 @@ public class CreateWindow extends JFrame implements ActionListener{
 
 
         loginPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Login Panel"));
-        setSize(new Dimension(500,500));
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        setSize(screen.width,screen.height);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(loginPane);
         setVisible(true);
