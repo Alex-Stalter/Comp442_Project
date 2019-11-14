@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         CreateWindow main = new CreateWindow();
-        main.initializeWindow("Test Window");
+        main.initializeWindow();
 
     }
 }
