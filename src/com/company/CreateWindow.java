@@ -6,14 +6,19 @@ import java.awt.event.*;
 
 public class CreateWindow {
 
-    public void initalizeWindow(String title){
-        JLabel emptyLabel = new JLabel("");
-        emptyLabel.setPreferredSize(new Dimension(175,100));
-        JFrame frame = new JFrame(title);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(emptyLabel, BorderLayout.CENTER);
+    public void initializeWindow(String title){
 
-        frame.pack();
-        frame.setVisible(true);
+
+        JPasswordField password = new JPasswordField(10);
+
+        JPanel frame = new JPanel();
+
+        password.setSize(new Dimension(50,10));
+
+        frame.setSize(new Dimension(500,500));
+
+
+
     }
+
 }
