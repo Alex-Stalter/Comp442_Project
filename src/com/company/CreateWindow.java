@@ -13,8 +13,11 @@ public class CreateWindow extends JFrame implements ActionListener{
     private JButton buttonLogin = new JButton("Login");
     private JButton exitButton = new JButton("Exit");
     private JButton registerButton = new JButton("Register");
+    private JButton logoutButton = new JButton("Logout");
     private JPanel loginPane = new JPanel(new GridBagLayout());
     private JPanel registerPane = new JPanel(new GridBagLayout());
+    private JPanel managerPane = new JPanel(new GridBagLayout());
+    private JPanel currentPane = loginPane;
 
     public void loginWindow(){
 
@@ -24,7 +27,7 @@ public class CreateWindow extends JFrame implements ActionListener{
 
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(10,10,10,10);
+        constraints.insets = new Insets(0,0,0,0);
         constraints.gridx = 0;
         constraints.gridy = 0;
         loginPane.add(labelUsername, constraints);
@@ -52,7 +55,7 @@ public class CreateWindow extends JFrame implements ActionListener{
         constraints.gridx = 1;
         constraints.gridy = 2;
         constraints.gridwidth = 0;
-        //constraints.ipady = 1;
+
 
         constraints.anchor = GridBagConstraints.EAST;
         loginPane.add(exitButton, constraints);
@@ -67,10 +70,11 @@ public class CreateWindow extends JFrame implements ActionListener{
 
         buttonLogin.addActionListener(this);
         exitButton.addActionListener(this);
+        registerButton.addActionListener(this);
 
 
         loginPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Login Panel"));
-        registerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Register"));
+
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screen.width,screen.height);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -83,6 +87,27 @@ public class CreateWindow extends JFrame implements ActionListener{
 
     }
 
+    private void setRegisterPane(){
+
+        registerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Register"));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(0,0,0,0);
+        registerPane.add(logoutButton,constraints);
+        logoutButton.addActionListener(this);
+
+
+    }
+
+    private void setManagerPane(){
+        managerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Manager"));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(0,0,0,0);
+        managerPane.add(logoutButton,constraints);
+        logoutButton.addActionListener(this);
+
+
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -91,19 +116,30 @@ public class CreateWindow extends JFrame implements ActionListener{
             password.append(fieldPassword.getPassword()[i]);
         }
         if(textUsername.getText().equals("Manager")&&password.toString().equals("manager")&&e.getSource()==buttonLogin){
-            loginPane.removeAll();
-            JLabel welcome = new JLabel("Welcome Manager!");
-            loginPane.add(welcome);
-            revalidate();
-            repaint();
+            currentPane.setVisible(false);
+            setManagerPane();
+            add(managerPane);
+            currentPane = managerPane;
+            managerPane.setVisible(true);
+
         }else if(e.getSource()==exitButton){
 
             dispose();
 
         }else if(e.getSource()==registerButton){
-            loginPane.setVisible(false);
+            currentPane.setVisible(false);
+
+            setRegisterPane();
             add(registerPane);
+            currentPane = registerPane;
             registerPane.setVisible(true);
+        }else if(e.getSource()==logoutButton){
+            currentPane.setVisible(false);
+
+            loginWindow();
+            currentPane = loginPane;
+            loginPane.setVisible(true);
+
         }
 
     }
