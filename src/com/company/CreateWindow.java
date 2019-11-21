@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class CreateWindow extends JFrame implements ActionListener{
     private JLabel labelUsername = new JLabel("Enter username: ");
     private JLabel labelPassword = new JLabel("Enter password: ");
+    private JLabel wrongPassword = new JLabel(" ");
     private JTextField textUsername = new JTextField(20);
     private JPasswordField fieldPassword = new JPasswordField(20);
     private JButton buttonLogin = new JButton("Login");
@@ -19,9 +20,10 @@ public class CreateWindow extends JFrame implements ActionListener{
     private JPanel managerPane = new JPanel(new GridBagLayout());
     private JPanel currentPane = loginPane;
 
+
+    //This function is called to create the first panel of the program
     public void loginWindow(){
 
-    //Creating login screen for management system
 
 
 
@@ -68,6 +70,10 @@ public class CreateWindow extends JFrame implements ActionListener{
         constraints.anchor = GridBagConstraints.CENTER;
         loginPane.add(registerButton, constraints);
 
+        constraints.gridx = 1;
+        constraints.gridy = 3;
+        loginPane.add(wrongPassword, constraints);
+
         buttonLogin.addActionListener(this);
         exitButton.addActionListener(this);
         registerButton.addActionListener(this);
@@ -78,8 +84,8 @@ public class CreateWindow extends JFrame implements ActionListener{
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screen.width,screen.height);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        add(loginPane);
 
+        add(loginPane);
         setVisible(true);
 
 
@@ -121,6 +127,7 @@ public class CreateWindow extends JFrame implements ActionListener{
             add(managerPane);
             currentPane = managerPane;
             managerPane.setVisible(true);
+            wrongPassword.setText("");
 
         }else if(e.getSource()==exitButton){
 
@@ -133,12 +140,21 @@ public class CreateWindow extends JFrame implements ActionListener{
             add(registerPane);
             currentPane = registerPane;
             registerPane.setVisible(true);
+            wrongPassword.setText("");
+
         }else if(e.getSource()==logoutButton){
             currentPane.setVisible(false);
 
             loginWindow();
             currentPane = loginPane;
             loginPane.setVisible(true);
+            wrongPassword.setText("");
+
+
+        }else if(e.getSource()==buttonLogin){
+
+            wrongPassword.setText("Invalid Username or Password");
+            revalidate();
 
         }
 
