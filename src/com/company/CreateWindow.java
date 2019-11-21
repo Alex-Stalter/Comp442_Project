@@ -18,6 +18,10 @@ public class CreateWindow extends JFrame implements ActionListener{
     private JPanel loginPane = new JPanel(new GridBagLayout());
     private JPanel registerPane = new JPanel(new GridBagLayout());
     private JPanel managerPane = new JPanel(new GridBagLayout());
+    private JPanel ownerPane = new JPanel(new GridBagLayout());
+    private JPanel maintPane = new JPanel(new GridBagLayout());
+    private JPanel cleanerPane = new JPanel(new GridBagLayout());
+    private JPanel customerPane = new JPanel(new GridBagLayout());
     private JPanel currentPane = loginPane;
 
 
@@ -103,7 +107,12 @@ public class CreateWindow extends JFrame implements ActionListener{
 
 
     }
+    private void setOwnerPane(){
+        ownerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Owner"));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(0,0,0,0);
 
+    }
     private void setManagerPane(){
         managerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Manager"));
         GridBagConstraints constraints = new GridBagConstraints();
@@ -113,6 +122,26 @@ public class CreateWindow extends JFrame implements ActionListener{
 
 
     }
+
+    private void setMaintPane(){
+        maintPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Maintenance"));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(0,0,0,0);
+    }
+
+    private void setCleanerPane(){
+        cleanerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Cleaner"));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(0,0,0,0);
+
+    }
+    private void setCustomerPane(){
+        customerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Customer"));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(0,0,0,0);
+    }
+
+
 
 
     @Override
@@ -127,6 +156,26 @@ public class CreateWindow extends JFrame implements ActionListener{
             add(managerPane);
             currentPane = managerPane;
             managerPane.setVisible(true);
+            wrongPassword.setText("");
+
+        }else if(textUsername.getText().equals("Owner")&&password.toString().equals("owner")&&e.getSource()==buttonLogin){
+            currentPane.setVisible(false);
+            setOwnerPane();
+            wrongPassword.setText("");
+
+        }else if(textUsername.getText().equals("Cleaner")&&password.toString().equals("cleaner")&&e.getSource()==buttonLogin){
+            currentPane.setVisible(false);
+            setCleanerPane();
+            wrongPassword.setText("");
+
+        }else if(textUsername.getText().equals("Maint")&&password.toString().equals("maint")&&e.getSource()==buttonLogin){
+            currentPane.setVisible(false);
+            setMaintPane();
+            wrongPassword.setText("");
+
+        }else if(textUsername.getText().equals("Customer")&&password.toString().equals("customer")&&e.getSource()==buttonLogin){
+            currentPane.setVisible(false);
+            setCustomerPane();
             wrongPassword.setText("");
 
         }else if(e.getSource()==exitButton){
