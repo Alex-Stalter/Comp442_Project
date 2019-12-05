@@ -9,6 +9,11 @@ public class CreateWindow extends JFrame implements ActionListener{
     private JLabel labelUsername = new JLabel("Enter username: ");
     private JLabel labelPassword = new JLabel("Enter password: ");
     private JLabel wrongPassword = new JLabel(" ");
+  /*  private JLabel a = new JLabel("a     asdawdasdawdasfaefsadawdqwdsad");
+    private JLabel b = new JLabel("b     ");
+    private JLabel c = new JLabel("c     ");
+    private JLabel d = new JLabel("d     ");
+    private JLabel e = new JLabel("e     ");*/
     private JTextField textUsername = new JTextField(20);
     private JPasswordField fieldPassword = new JPasswordField(20);
     private JButton buttonLogin = new JButton("Login");
@@ -18,6 +23,10 @@ public class CreateWindow extends JFrame implements ActionListener{
     private JPanel loginPane = new JPanel(new GridBagLayout());
     private JPanel registerPane = new JPanel(new GridBagLayout());
     private JPanel managerPane = new JPanel(new GridBagLayout());
+    private JPanel ownerPane = new JPanel(new GridBagLayout());
+    private JPanel maintPane = new JPanel(new GridBagLayout());
+    private JPanel cleanerPane = new JPanel(new GridBagLayout());
+    private JPanel customerPane = new JPanel(new GridBagLayout());
     private JPanel currentPane = loginPane;
 
 
@@ -29,6 +38,7 @@ public class CreateWindow extends JFrame implements ActionListener{
 
 
         GridBagConstraints constraints = new GridBagConstraints();
+        
         constraints.insets = new Insets(0,0,0,0);
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -94,17 +104,28 @@ public class CreateWindow extends JFrame implements ActionListener{
     }
 
     private void setRegisterPane(){
-
+        registerPane.removeAll();
         registerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Register"));
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(0,0,0,0);
+
         registerPane.add(logoutButton,constraints);
         logoutButton.addActionListener(this);
 
 
     }
+    private void setOwnerPane(){
+        ownerPane.removeAll();
+        ownerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Owner"));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(0,0,0,0);
+        ownerPane.add(logoutButton,constraints);
 
+        logoutButton.addActionListener(this);
+
+    }
     private void setManagerPane(){
+        managerPane.removeAll();
         managerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Manager"));
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(0,0,0,0);
@@ -113,6 +134,35 @@ public class CreateWindow extends JFrame implements ActionListener{
 
 
     }
+
+    private void setMaintPane(){
+        maintPane.removeAll();
+        maintPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Maintenance"));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(0,0,0,0);
+        maintPane.add(logoutButton,constraints);
+        logoutButton.addActionListener(this);
+    }
+
+    private void setCleanerPane(){
+        cleanerPane.removeAll();
+        cleanerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Cleaner"));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(0,0,0,0);
+        cleanerPane.add(logoutButton,constraints);
+        logoutButton.addActionListener(this);
+
+    }
+    private void setCustomerPane(){
+        customerPane.removeAll();
+        customerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Customer"));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(0,0,0,0);
+        customerPane.add(logoutButton,constraints);
+        logoutButton.addActionListener(this);
+    }
+
+
 
 
     @Override
@@ -127,6 +177,38 @@ public class CreateWindow extends JFrame implements ActionListener{
             add(managerPane);
             currentPane = managerPane;
             managerPane.setVisible(true);
+            wrongPassword.setText("");
+
+        }else if(textUsername.getText().equals("Owner")&&password.toString().equals("owner")&&e.getSource()==buttonLogin){
+            currentPane.setVisible(false);
+            setOwnerPane();
+            add(ownerPane);
+            currentPane = ownerPane;
+            ownerPane.setVisible(true);
+            wrongPassword.setText("");
+
+        }else if(textUsername.getText().equals("Cleaner")&&password.toString().equals("cleaner")&&e.getSource()==buttonLogin){
+            currentPane.setVisible(false);
+            setCleanerPane();
+            add(cleanerPane);
+            currentPane=cleanerPane;
+            cleanerPane.setVisible(true);
+            wrongPassword.setText("");
+
+        }else if(textUsername.getText().equals("Maint")&&password.toString().equals("maint")&&e.getSource()==buttonLogin){
+            currentPane.setVisible(false);
+            setMaintPane();
+            add(maintPane);
+            currentPane=maintPane;
+            maintPane.setVisible(true);
+            wrongPassword.setText("");
+
+        }else if(textUsername.getText().equals("Customer")&&password.toString().equals("customer")&&e.getSource()==buttonLogin){
+            currentPane.setVisible(false);
+            setCustomerPane();
+            add(customerPane);
+            currentPane=customerPane;
+            customerPane.setVisible(true);
             wrongPassword.setText("");
 
         }else if(e.getSource()==exitButton){
@@ -144,9 +226,11 @@ public class CreateWindow extends JFrame implements ActionListener{
 
         }else if(e.getSource()==logoutButton){
             currentPane.setVisible(false);
-
+            remove(currentPane);
+            revalidate();
             loginWindow();
             currentPane = loginPane;
+            add(loginPane);
             loginPane.setVisible(true);
             wrongPassword.setText("");
 
