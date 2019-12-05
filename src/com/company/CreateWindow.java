@@ -226,9 +226,11 @@ public class CreateWindow extends JFrame implements ActionListener{
 
         }else if(e.getSource()==logoutButton){
             currentPane.setVisible(false);
-
+            remove(currentPane);
+            revalidate();
             loginWindow();
             currentPane = loginPane;
+            add(loginPane);
             loginPane.setVisible(true);
             wrongPassword.setText("");
 
