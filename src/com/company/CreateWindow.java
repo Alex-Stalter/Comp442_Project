@@ -5,36 +5,34 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
 
-public class CreateWindow extends JFrame implements ActionListener{
+public class CreateWindow extends JFrame implements ActionListener {
+
     private JLabel labelUsername = new JLabel("Enter username: ");
     private JLabel labelPassword = new JLabel("Enter password: ");
     private JLabel wrongPassword = new JLabel(" ");
-  /*  private JLabel a = new JLabel("a     asdawdasdawdasfaefsadawdqwdsad");
-    private JLabel b = new JLabel("b     ");
-    private JLabel c = new JLabel("c     ");
-    private JLabel d = new JLabel("d     ");
-    private JLabel e = new JLabel("e     ");*/
     private JTextField textUsername = new JTextField(20);
     private JPasswordField fieldPassword = new JPasswordField(20);
     private JButton buttonLogin = new JButton("Login");
     private JButton exitButton = new JButton("Exit");
-    private JButton registerButton = new JButton("Register");
     private JButton logoutButton = new JButton("Logout");
     private JPanel loginPane = new JPanel(new GridBagLayout());
-    private JPanel registerPane = new JPanel(new GridBagLayout());
     private JPanel managerPane = new JPanel(new GridBagLayout());
     private JPanel ownerPane = new JPanel(new GridBagLayout());
     private JPanel maintPane = new JPanel(new GridBagLayout());
     private JPanel cleanerPane = new JPanel(new GridBagLayout());
     private JPanel customerPane = new JPanel(new GridBagLayout());
     private JPanel currentPane = loginPane;
+    public Owner owner = new Owner();
 
 
     //This function is called to create the first panel of the program
     public void loginWindow(){
 
 
-
+        for (Room g:owner.hotelRooms) {
+            System.out.println(g.roomDesc);
+            System.out.println(g.roomValue);
+        }
 
 
         GridBagConstraints constraints = new GridBagConstraints();
@@ -43,20 +41,20 @@ public class CreateWindow extends JFrame implements ActionListener{
         constraints.gridx = 0;
         constraints.gridy = 0;
         loginPane.add(labelUsername, constraints);
-        //registerPane.add(labelUsername, constraints);
+
 
         constraints.gridx = 1;
         loginPane.add(textUsername, constraints);
-        //registerPane.add(textUsername, constraints);
+
 
         constraints.gridx = 0;
         constraints.gridy = 1;
         loginPane.add(labelPassword, constraints);
-        //registerPane.add(labelPassword, constraints);
+
 
         constraints.gridx = 1;
         loginPane.add(fieldPassword, constraints);
-        //registerPane.add(fieldPassword, constraints);
+
 
         constraints.gridx = 1;
         constraints.gridy = 2;
@@ -77,16 +75,15 @@ public class CreateWindow extends JFrame implements ActionListener{
         constraints.gridwidth = 0;
         constraints.ipadx = 1;
 
-        constraints.anchor = GridBagConstraints.CENTER;
-        loginPane.add(registerButton, constraints);
 
-        constraints.gridx = 1;
+
+
         constraints.gridy = 3;
         loginPane.add(wrongPassword, constraints);
 
         buttonLogin.addActionListener(this);
         exitButton.addActionListener(this);
-        registerButton.addActionListener(this);
+
 
 
         loginPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Login Panel"));
@@ -103,17 +100,6 @@ public class CreateWindow extends JFrame implements ActionListener{
 
     }
 
-    private void setRegisterPane(){
-        registerPane.removeAll();
-        registerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Register"));
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(0,0,0,0);
-
-        registerPane.add(logoutButton,constraints);
-        logoutButton.addActionListener(this);
-
-
-    }
     private void setOwnerPane(){
         ownerPane.removeAll();
         ownerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Owner"));
@@ -171,7 +157,7 @@ public class CreateWindow extends JFrame implements ActionListener{
         for(int i =0;i<fieldPassword.getPassword().length;i++){
             password.append(fieldPassword.getPassword()[i]);
         }
-        if(textUsername.getText().equals("Manager")&&password.toString().equals("manager")&&e.getSource()==buttonLogin){
+        if(textUsername.getText().equals(owner.username)&&password.toString().equals(owner.password)&&e.getSource()==buttonLogin){
             currentPane.setVisible(false);
             setManagerPane();
             add(managerPane);
@@ -214,15 +200,6 @@ public class CreateWindow extends JFrame implements ActionListener{
         }else if(e.getSource()==exitButton){
 
             dispose();
-
-        }else if(e.getSource()==registerButton){
-            currentPane.setVisible(false);
-
-            setRegisterPane();
-            add(registerPane);
-            currentPane = registerPane;
-            registerPane.setVisible(true);
-            wrongPassword.setText("");
 
         }else if(e.getSource()==logoutButton){
             currentPane.setVisible(false);
