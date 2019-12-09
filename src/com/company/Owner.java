@@ -2,8 +2,8 @@ package com.company;
 
 
 public class Owner {
-    public String password = "Owner";
-    public String username = "owner";
+    public String password = "owner";
+    public String username = "Owner";
     public int maxManager = 4;
     public int maxMaint = 6;
     public int maxCleaner = 8;
@@ -23,8 +23,8 @@ public class Owner {
 
     Owner(){
         createRooms();
-        Manager primaryManager = new Manager();
-        Manager assistantManager = new Manager();
+        Manager primaryManager = new Manager(hotelRooms);
+        Manager assistantManager = new Manager(hotelRooms);
         managers[0]=primaryManager;
         managerNumber++;
         managers[1]=assistantManager;
@@ -74,14 +74,16 @@ public class Owner {
             maintNumber++;
         }
         calculateCost();
+        calculateIncome();
     }
     public void hireManager(){
         if(managerNumber<maxManager){
-            Manager newManager = new Manager();
+            Manager newManager = new Manager(hotelRooms);
             managers[managerNumber] = newManager;
             managerNumber++;
         }
         calculateCost();
+        calculateIncome();
     }
     public void hireCleaner(){
         if(cleanerNumber<maxCleaner){
@@ -91,6 +93,7 @@ public class Owner {
 
         }
         calculateCost();
+        calculateIncome();
     }
     public void fireMaint(){
         if(maintNumber>0){
@@ -98,6 +101,7 @@ public class Owner {
             maintNumber--;
         }
         calculateCost();
+        calculateIncome();
 
 
     }
@@ -107,6 +111,7 @@ public class Owner {
             managerNumber--;
         }
         calculateCost();
+        calculateIncome();
 
     }
     public void fireCleaner(){
@@ -115,13 +120,14 @@ public class Owner {
             cleanerNumber--;
         }
         calculateCost();
+        calculateIncome();
     }
     public void calculateCost(){
         cost = 150*maintNumber + 300*managerNumber + 150*cleanerNumber;
     }
     public void calculateIncome(){
 
-        for (Room booked: hotelRooms) {
+        for (Room booked: managers[0].hotelRoom) {
 
             if(booked.booked){
                 income+=booked.roomValue;
