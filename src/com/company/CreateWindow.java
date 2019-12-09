@@ -3,37 +3,41 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
+
 
 public class CreateWindow extends JFrame implements ActionListener {
-
+    public Owner owner = new Owner();
     private JLabel labelUsername = new JLabel("Enter username: ");
     private JLabel labelPassword = new JLabel("Enter password: ");
     private JLabel wrongPassword = new JLabel(" ");
+    private JLabel weeklyCost = new JLabel("Weekly cost: $"+owner.cost);
+    private JLabel weeklyIncome = new JLabel("Weekly gross income: $"+owner.income);
+    private JLabel weeklyNet = new JLabel("Weekly net income: $"+(owner.income-owner.cost));
+    private JLabel managerRatio = new JLabel("Current Managers"+owner.managerNumber+"/"+owner.maxManager);
+    private JLabel maintRatio = new JLabel("Current Maintainers"+owner.maintNumber+"/"+owner.maxMaint);
+    private JLabel cleanerRatio = new JLabel("Current Cleaners"+owner.cleanerNumber+"/"+owner.maxCleaner);
     private JTextField textUsername = new JTextField(20);
     private JPasswordField fieldPassword = new JPasswordField(20);
     private JButton buttonLogin = new JButton("Login");
     private JButton exitButton = new JButton("Exit");
     private JButton logoutButton = new JButton("Logout");
+    private JButton hireManager = new JButton("Hire Manager");
+    private JButton hireCleaner = new JButton("Hire Cleaner");
+    private JButton hireMaint = new JButton("Hire Maint");
+    private JButton fireManager = new JButton("Fire Manager");
+    private JButton fireCleaner = new JButton("Fire Cleaner");
+    private JButton fireMaint = new JButton("Fire Maint");
     private JPanel loginPane = new JPanel(new GridBagLayout());
     private JPanel managerPane = new JPanel(new GridBagLayout());
     private JPanel ownerPane = new JPanel(new GridBagLayout());
     private JPanel maintPane = new JPanel(new GridBagLayout());
     private JPanel cleanerPane = new JPanel(new GridBagLayout());
-    private JPanel customerPane = new JPanel(new GridBagLayout());
     private JPanel currentPane = loginPane;
-    public Owner owner = new Owner();
+
 
 
     //This function is called to create the first panel of the program
     public void loginWindow(){
-
-
-        for (Room g:owner.hotelRooms) {
-            System.out.println(g.roomDesc);
-            System.out.println(g.roomValue);
-        }
-
 
         GridBagConstraints constraints = new GridBagConstraints();
         
@@ -105,8 +109,66 @@ public class CreateWindow extends JFrame implements ActionListener {
         ownerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Owner"));
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(0,0,0,0);
+
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        ownerPane.add(managerRatio,constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        ownerPane.add(cleanerRatio,constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        ownerPane.add(maintRatio,constraints);
+
+        constraints.gridx = 3;
+        constraints.gridy = 4;
         ownerPane.add(logoutButton,constraints);
 
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        ownerPane.add(hireCleaner, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        ownerPane.add(hireManager, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 3;
+        ownerPane.add(hireMaint, constraints);
+
+        constraints.gridx = 2;
+        constraints.gridy = 1;
+        ownerPane.add(fireCleaner, constraints);
+
+        constraints.gridx = 2;
+        constraints.gridy = 2;
+        ownerPane.add(fireManager, constraints);
+
+        constraints.gridx = 2;
+        constraints.gridy = 3;
+        ownerPane.add(fireMaint, constraints);
+
+        constraints.gridx = 3;
+        constraints.gridy = 1;
+        ownerPane.add(weeklyCost, constraints);
+
+        constraints.gridx = 3;
+        constraints.gridy = 2;
+        ownerPane.add(weeklyIncome, constraints);
+
+        constraints.gridx = 3;
+        constraints.gridy = 3;
+        ownerPane.add(weeklyNet, constraints);
+
+
+        hireCleaner.addActionListener(this);
+        hireManager.addActionListener(this);
+        hireMaint.addActionListener(this);
+        fireCleaner.addActionListener(this);
+        fireMaint.addActionListener(this);
+        fireManager.addActionListener(this);
         logoutButton.addActionListener(this);
 
     }
@@ -138,14 +200,6 @@ public class CreateWindow extends JFrame implements ActionListener {
         cleanerPane.add(logoutButton,constraints);
         logoutButton.addActionListener(this);
 
-    }
-    private void setCustomerPane(){
-        customerPane.removeAll();
-        customerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Customer"));
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(0,0,0,0);
-        customerPane.add(logoutButton,constraints);
-        logoutButton.addActionListener(this);
     }
 
 
@@ -189,14 +243,6 @@ public class CreateWindow extends JFrame implements ActionListener {
             maintPane.setVisible(true);
             wrongPassword.setText("");
 
-        }else if(textUsername.getText().equals("Customer")&&password.toString().equals("customer")&&e.getSource()==buttonLogin){
-            currentPane.setVisible(false);
-            setCustomerPane();
-            add(customerPane);
-            currentPane=customerPane;
-            customerPane.setVisible(true);
-            wrongPassword.setText("");
-
         }else if(e.getSource()==exitButton){
 
             dispose();
@@ -217,6 +263,36 @@ public class CreateWindow extends JFrame implements ActionListener {
             wrongPassword.setText("Invalid Username or Password");
             revalidate();
 
+        }else if(e.getSource()==hireMaint){
+            owner.hireMaint();
+            weeklyCost.setText("Cost: "+owner.cost);
+            maintRatio.setText("Current Maintainers"+owner.maintNumber+"/"+owner.maxMaint);
+            revalidate();
+        }else if(e.getSource()==hireCleaner){
+            owner.hireCleaner();
+            weeklyCost.setText("Cost: "+owner.cost);
+            cleanerRatio.setText("Current Cleaners"+owner.cleanerNumber+"/"+owner.maxCleaner);
+            revalidate();
+        }else if(e.getSource()==hireManager){
+            owner.hireManager();
+            weeklyCost.setText("Cost: "+owner.cost);
+            managerRatio.setText("Current Managers"+owner.managerNumber+"/"+owner.maxManager);
+            revalidate();
+        }else if(e.getSource()==fireManager){
+            owner.fireManager();
+            weeklyCost.setText("Cost: "+owner.cost);
+            managerRatio.setText("Current Managers"+owner.managerNumber+"/"+owner.maxManager);
+            revalidate();
+        }else if(e.getSource()==fireMaint){
+            owner.fireMaint();
+            weeklyCost.setText("Cost: "+owner.cost);
+            maintRatio.setText("Current Maintainers"+owner.maintNumber+"/"+owner.maxMaint);
+            revalidate();
+        }else if(e.getSource()==fireCleaner){
+            owner.fireCleaner();
+            weeklyCost.setText("Cost: "+owner.cost);
+            cleanerRatio.setText("Current Cleaners"+owner.cleanerNumber+"/"+owner.maxCleaner);
+            revalidate();
         }
 
     }
