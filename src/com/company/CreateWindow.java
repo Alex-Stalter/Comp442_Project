@@ -16,6 +16,12 @@ public class CreateWindow extends JFrame implements ActionListener {
     private JLabel managerRatio = new JLabel("Current Managers"+owner.managerNumber+"/"+owner.maxManager);
     private JLabel maintRatio = new JLabel("Current Maintainers"+owner.maintNumber+"/"+owner.maxMaint);
     private JLabel cleanerRatio = new JLabel("Current Cleaners"+owner.cleanerNumber+"/"+owner.maxCleaner);
+    private JLabel booking = new JLabel("Please select one of the options and select number of days for booking.");
+    private JButton bookingRoomLower = new JButton("Low Value Room");
+    private JButton bookingRoomLM = new JButton("Low-Med Value Room");
+    private JButton bookingRoomMid = new JButton("Med Value Room");
+    private JButton bookingRoomMH = new JButton("Med-High Value Room");
+    private JButton bookingRoomHigh = new JButton("High Value Room");
     private JTextField textUsername = new JTextField(20);
     private JPasswordField fieldPassword = new JPasswordField(20);
     private JButton buttonLogin = new JButton("Login");
@@ -177,7 +183,41 @@ public class CreateWindow extends JFrame implements ActionListener {
         managerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Manager"));
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(0,0,0,0);
+
+
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        managerPane.add(booking, constraints);
+
+        constraints.gridx = 2;
+        constraints.gridy = 6;
         managerPane.add(logoutButton,constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        managerPane.add(bookingRoomLower,constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        managerPane.add(bookingRoomLM,constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 3;
+        managerPane.add(bookingRoomMid,constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 4;
+        managerPane.add(bookingRoomMH,constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 5;
+        managerPane.add(bookingRoomHigh,constraints);
+
+        bookingRoomLower.addActionListener(this);
+        bookingRoomLM.addActionListener(this);
+        bookingRoomMid.addActionListener(this);
+        bookingRoomMH.addActionListener(this);
+        bookingRoomHigh.addActionListener(this);
         logoutButton.addActionListener(this);
 
 
@@ -211,7 +251,7 @@ public class CreateWindow extends JFrame implements ActionListener {
         for(int i =0;i<fieldPassword.getPassword().length;i++){
             password.append(fieldPassword.getPassword()[i]);
         }
-        if(textUsername.getText().equals(owner.username)&&password.toString().equals(owner.password)&&e.getSource()==buttonLogin){
+        if(textUsername.getText().equals("Manager")&&password.toString().equals("manager")&&e.getSource()==buttonLogin){
             currentPane.setVisible(false);
             setManagerPane();
             add(managerPane);
@@ -219,7 +259,7 @@ public class CreateWindow extends JFrame implements ActionListener {
             managerPane.setVisible(true);
             wrongPassword.setText("");
 
-        }else if(textUsername.getText().equals("Owner")&&password.toString().equals("owner")&&e.getSource()==buttonLogin){
+        }else if(textUsername.getText().equals(owner.username)&&password.toString().equals(owner.password)&&e.getSource()==buttonLogin){
             currentPane.setVisible(false);
             setOwnerPane();
             add(ownerPane);
@@ -267,32 +307,58 @@ public class CreateWindow extends JFrame implements ActionListener {
             owner.hireMaint();
             weeklyCost.setText("Cost: "+owner.cost);
             maintRatio.setText("Current Maintainers"+owner.maintNumber+"/"+owner.maxMaint);
+            weeklyNet.setText("Weekly net income: $"+(owner.income-owner.cost));
             revalidate();
         }else if(e.getSource()==hireCleaner){
             owner.hireCleaner();
             weeklyCost.setText("Cost: "+owner.cost);
             cleanerRatio.setText("Current Cleaners"+owner.cleanerNumber+"/"+owner.maxCleaner);
+            weeklyNet.setText("Weekly net income: $"+(owner.income-owner.cost));
             revalidate();
         }else if(e.getSource()==hireManager){
             owner.hireManager();
             weeklyCost.setText("Cost: "+owner.cost);
             managerRatio.setText("Current Managers"+owner.managerNumber+"/"+owner.maxManager);
+            weeklyNet.setText("Weekly net income: $"+(owner.income-owner.cost));
             revalidate();
         }else if(e.getSource()==fireManager){
             owner.fireManager();
             weeklyCost.setText("Cost: "+owner.cost);
             managerRatio.setText("Current Managers"+owner.managerNumber+"/"+owner.maxManager);
+            weeklyNet.setText("Weekly net income: $"+(owner.income-owner.cost));
             revalidate();
         }else if(e.getSource()==fireMaint){
             owner.fireMaint();
             weeklyCost.setText("Cost: "+owner.cost);
             maintRatio.setText("Current Maintainers"+owner.maintNumber+"/"+owner.maxMaint);
+            weeklyNet.setText("Weekly net income: $"+(owner.income-owner.cost));
             revalidate();
         }else if(e.getSource()==fireCleaner){
             owner.fireCleaner();
             weeklyCost.setText("Cost: "+owner.cost);
             cleanerRatio.setText("Current Cleaners"+owner.cleanerNumber+"/"+owner.maxCleaner);
+            weeklyNet.setText("Weekly net income: $"+(owner.income-owner.cost));
             revalidate();
+        }else if(e.getSource()==bookingRoomLower){
+            owner.managers[0].bookRoom(1,1);
+            owner.calculateIncome();
+            weeklyIncome.setText("Weekly gross income: $"+owner.income);
+        }else if(e.getSource()==bookingRoomLM){
+            owner.managers[0].bookRoom(2,1);
+            owner.calculateIncome();
+            weeklyIncome.setText("Weekly gross income: $"+owner.income);
+        }else if(e.getSource()==bookingRoomMid){
+            owner.managers[0].bookRoom(3,1);
+            owner.calculateIncome();
+            weeklyIncome.setText("Weekly gross income: $"+owner.income);
+        }else if(e.getSource()==bookingRoomMH){
+            owner.managers[0].bookRoom(4,1);
+            owner.calculateIncome();
+            weeklyIncome.setText("Weekly gross income: $"+owner.income);
+        }else if(e.getSource()==bookingRoomHigh){
+            owner.managers[0].bookRoom(5,1);
+            owner.calculateIncome();
+            weeklyIncome.setText("Weekly gross income: $"+owner.income);
         }
 
     }
