@@ -11,5 +11,10 @@ Guests can cancel reservation for rooms, change room reservation and room occupa
 Guests can make hotel related payments online
 
 Maintainers and Cleaners have access to a schedule that they can see 
-Non functional requirements:
 
+Non functional requirements:
+Maintainers and Cleaners will not be able to edit their schedule to increase or decrease workload
+
+Guests do not have manager functionalities - checking in/out guests, list of all guests, ability to hire or fire staff
+
+Managers do not have owner functionalities - ability to hire or fire managers, access to money statements
