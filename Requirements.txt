@@ -9,6 +9,7 @@ Managers can see a list of all guests
 
 Guests can rent rooms for the desired amount of time, see where rooms are located, how much room cost per night and per person, and extend stay 
 Guests can cancel reservation for rooms, change room reservation and room occupancy
+Guests can make hotel related payments online
 
 Non functional requirements:
 Guests can see maintenance schedule with maintainer and cleaner names
