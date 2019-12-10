@@ -2,7 +2,6 @@ Functional requirements:
 Login for Owner, Manager, Customers and Maintenance Staff
 
 Owner needs to be able to see money coming in, going out, and ability to hire or fire managers
-Owner has same abilities as a manager
 
 Manager can check in/out guests, manage hotel staff, ability to see available rooms for new guests
 Managers can see a list of all guests 
@@ -11,5 +10,6 @@ Guests can rent rooms for the desired amount of time, see where rooms are locate
 Guests can cancel reservation for rooms, change room reservation and room occupancy
 Guests can make hotel related payments online
 
+Maintainers and Cleaners have access to a schedule that they can see 
 Non functional requirements:
-Guests can see maintenance schedule with maintainer and cleaner names
+
