@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="188.0">com.company.Manager</node>
+    <node x="420.0" y="200.0">com.company.Customer</node>
+    <node x="53.56136363636364" y="0.0">com.company.Room</node>
+    <node x="319.0" y="200.0">com.company.Maint</node>
+    <node x="214.5" y="1616.0">com.company.Main</node>
+    <node x="204.0" y="200.0">com.company.Cleaner</node>
+    <node x="162.5" y="338.0">com.company.Owner</node>
+    <node x="136.0" y="812.0">com.company.CreateWindow</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.company.Owner" target="com.company.Customer">
+      <point x="71.19999999999999" y="-212.0" />
+      <point x="322.7" y="308.0" />
+      <point x="471.0" y="308.0" />
+      <point x="0.0" y="13.0" />
+    </edge>
+    <edge source="com.company.Owner" target="com.company.Maint">
+      <point x="23.73333333333335" y="-212.0" />
+      <point x="275.23333333333335" y="268.0" />
+      <point x="332.5" y="268.0" />
+      <point x="-27.0" y="13.0" />
+    </edge>
+    <edge source="com.company.CreateWindow" target="com.company.Owner">
+      <point x="-57.75" y="-377.0" />
+      <point x="193.75" y="787.0" />
+      <point x="207.0" y="787.0" />
+      <point x="-44.5" y="212.0" />
+    </edge>
+    <edge source="com.company.Manager" target="com.company.Room">
+      <point x="40.25" y="-25.0" />
+      <point x="120.75" y="168.0" />
+      <point x="98.26136363636363" y="168.0" />
+      <point x="-29.80000000000001" y="69.0" />
+    </edge>
+    <edge source="com.company.Main" target="com.company.CreateWindow">
+      <point x="18.5" y="-13.0" />
+      <point x="270.0" y="1591.0" />
+      <point x="309.25" y="1591.0" />
+      <point x="57.75" y="377.0" />
+    </edge>
+    <edge source="com.company.Owner" target="com.company.Manager">
+      <point x="-59.333333333333314" y="-212.0" />
+      <point x="192.16666666666669" y="298.0" />
+      <point x="134.16666666666666" y="298.0" />
+      <point x="53.66666666666666" y="25.0" />
+    </edge>
+    <edge source="com.company.Owner" target="com.company.Room">
+      <point x="-35.599999999999966" y="-212.0" />
+      <point x="215.90000000000003" y="278.0" />
+      <point x="182.5" y="278.0" />
+      <point x="182.5" y="158.0" />
+      <point x="157.86136363636362" y="158.0" />
+      <point x="29.799999999999983" y="69.0" />
+    </edge>
+    <edge source="com.company.Owner" target="com.company.Cleaner">
+      <point x="-11.866666666666646" y="-212.0" />
+      <point x="239.63333333333338" y="258.0" />
+      <point x="219.83333333333337" y="258.0" />
+      <point x="-31.666666666666657" y="13.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="473.0" y="416.9999999999999" />
+  <SelectedNodes>
+    <node>com.company.Room</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

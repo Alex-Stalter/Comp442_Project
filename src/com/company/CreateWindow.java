@@ -16,7 +16,7 @@ public class CreateWindow extends JFrame implements ActionListener {
     private JLabel managerRatio = new JLabel("Current Managers"+owner.managerNumber+"/"+owner.maxManager);
     private JLabel maintRatio = new JLabel("Current Maintainers"+owner.maintNumber+"/"+owner.maxMaint);
     private JLabel cleanerRatio = new JLabel("Current Cleaners"+owner.cleanerNumber+"/"+owner.maxCleaner);
-    private JLabel booking = new JLabel("Please select one of the options and select number of days for booking.");
+    private JLabel booking = new JLabel("Please select one of the options for room.");
     private JButton bookingRoomLower = new JButton("Low Value Room");
     private JButton bookingRoomLM = new JButton("Low-Med Value Room");
     private JButton bookingRoomMid = new JButton("Med Value Room");
