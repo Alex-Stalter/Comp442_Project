@@ -1,0 +1,46 @@
+Test Plan
+
+
+The major parts of the test plan include making sure that each user can login with the specified login provided to them and that it correctly redirects them to the page for tier specific user. The remainder of testing will be done on the buttons that give the user control and making sure that they provide the desired result and the math is correct.
+
+Test Cases
+
+Title	Correct Login
+Feature 	Login in to specific profile given matching username and password
+Setup	Hotel management system running on computer
+Test Data	Usernames and Passwords:
+Owner owner
+Manager manager
+Maint maint
+Cleaner cleaner
+Test Actions	Start up system
+Enter desired credentials to test
+Desired Result	Using one of the four profiles above the user should be let into the system and if the username or password is wrong error message will be displayed alerting user of invalid username or password
+
+Title	Booking
+Feature 	Correct amount of money is displayed in owner profile when a room is booked
+Setup	Hotel management system running on computer
+Test Data	Usernames and Passwords:
+Owner owner
+Manager manager
+
+Test Actions	Start up system
+Login in to owner to check income is 0
+Log out of owner and log into manager
+Book one room of any type
+Log out of manager 
+Log in to Owner and check income and net
+
+Desired Result	The user should see the Income and net update on the Owners end
+
+
+Title	Employee management
+Feature 	Hiring and firing employees
+Setup	Hotel management system running on computer
+Test Data	Usernames and Passwords:
+Owner owner
+Test Actions	Start up system
+Log in to owner profile
+Using the buttons in the owners profile hire and file employees
+Desired Result	The system should update the ration of the employee type that is click and at the same time update the cost income and net income. Owner should not be able to hire more than the max amount of employees
+
