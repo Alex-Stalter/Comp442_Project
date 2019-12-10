@@ -17,6 +17,7 @@ public class CreateWindow extends JFrame implements ActionListener {
     private JLabel maintRatio = new JLabel("Current Maintainers"+owner.maintNumber+"/"+owner.maxMaint);
     private JLabel cleanerRatio = new JLabel("Current Cleaners"+owner.cleanerNumber+"/"+owner.maxCleaner);
     private JLabel booking = new JLabel("Please select one of the options for room.");
+    private JLabel future = new JLabel("This functionality has not been implemented yet");
     private JButton bookingRoomLower = new JButton("Low Value Room");
     private JButton bookingRoomLM = new JButton("Low-Med Value Room");
     private JButton bookingRoomMid = new JButton("Med Value Room");
@@ -189,27 +190,27 @@ public class CreateWindow extends JFrame implements ActionListener {
         constraints.gridy = 0;
         managerPane.add(booking, constraints);
 
-        constraints.gridx = 2;
+        constraints.gridx = 1;
         constraints.gridy = 6;
         managerPane.add(logoutButton,constraints);
 
-        constraints.gridx = 1;
+        constraints.gridx = 0;
         constraints.gridy = 1;
         managerPane.add(bookingRoomLower,constraints);
 
-        constraints.gridx = 1;
+        constraints.gridx = 0;
         constraints.gridy = 2;
         managerPane.add(bookingRoomLM,constraints);
 
-        constraints.gridx = 1;
+        constraints.gridx = 0;
         constraints.gridy = 3;
         managerPane.add(bookingRoomMid,constraints);
 
-        constraints.gridx = 1;
+        constraints.gridx = 0;
         constraints.gridy = 4;
         managerPane.add(bookingRoomMH,constraints);
 
-        constraints.gridx = 1;
+        constraints.gridx = 0;
         constraints.gridy = 5;
         managerPane.add(bookingRoomHigh,constraints);
 
@@ -228,6 +229,11 @@ public class CreateWindow extends JFrame implements ActionListener {
         maintPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Maintenance"));
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(0,0,0,0);
+        constraints.gridy = 0;
+        constraints.gridx = 0;
+        maintPane.add(future,constraints);
+        constraints.gridy = 1;
+        constraints.gridx = 0;
         maintPane.add(logoutButton,constraints);
         logoutButton.addActionListener(this);
     }
@@ -237,6 +243,11 @@ public class CreateWindow extends JFrame implements ActionListener {
         cleanerPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Cleaner"));
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(0,0,0,0);
+        constraints.gridy = 0;
+        constraints.gridx = 0;
+        cleanerPane.add(future,constraints);
+        constraints.gridy = 1;
+        constraints.gridx = 0;
         cleanerPane.add(logoutButton,constraints);
         logoutButton.addActionListener(this);
 
@@ -248,6 +259,7 @@ public class CreateWindow extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         StringBuilder password= new StringBuilder();
+        System.out.println(owner.income-owner.cost);
         for(int i =0;i<fieldPassword.getPassword().length;i++){
             password.append(fieldPassword.getPassword()[i]);
         }
@@ -343,22 +355,27 @@ public class CreateWindow extends JFrame implements ActionListener {
             owner.managers[0].bookRoom(1,1);
             owner.calculateIncome();
             weeklyIncome.setText("Weekly gross income: $"+owner.income);
+            weeklyNet.setText("Weekly net income: $"+(owner.income-owner.cost));
         }else if(e.getSource()==bookingRoomLM){
             owner.managers[0].bookRoom(2,1);
             owner.calculateIncome();
             weeklyIncome.setText("Weekly gross income: $"+owner.income);
+            weeklyNet.setText("Weekly net income: $"+(owner.income-owner.cost));
         }else if(e.getSource()==bookingRoomMid){
             owner.managers[0].bookRoom(3,1);
             owner.calculateIncome();
             weeklyIncome.setText("Weekly gross income: $"+owner.income);
+            weeklyNet.setText("Weekly net income: $"+(owner.income-owner.cost));
         }else if(e.getSource()==bookingRoomMH){
             owner.managers[0].bookRoom(4,1);
             owner.calculateIncome();
             weeklyIncome.setText("Weekly gross income: $"+owner.income);
+            weeklyNet.setText("Weekly net income: $"+(owner.income-owner.cost));
         }else if(e.getSource()==bookingRoomHigh){
             owner.managers[0].bookRoom(5,1);
             owner.calculateIncome();
             weeklyIncome.setText("Weekly gross income: $"+owner.income);
+            weeklyNet.setText("Weekly net income: $"+(owner.income-owner.cost));
         }
 
     }

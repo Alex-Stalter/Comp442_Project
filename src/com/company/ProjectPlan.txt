@@ -1,0 +1,32 @@
+Main
+    main will only be used to create the CreateWindow object and then call the login window function
+
+
+CreateWindow
+    the main implementation of all gui creation and modeling
+    will include functions to create loginwindow ownerwindow and manger window
+    will handle all of the inputs provided by the user and process them using an event listener
+
+Owner
+    owner class will create arrays that will hold manager, maint, cleaner, customer, and room objects
+    will preform actions on specified objects as instructed by the user on the main screen
+    will calculate the weekly cost income and net income
+    creates and populates the hotelRoom array for use by the manager
+
+Manager
+    the hotelRoom array is passed into the manager class which allows the manager to book rooms for a specified days
+    the manager will also be in charge of scheduling the maintainers and cleaners to rooms that have been booked
+    the manager will also be be able to be bale send request to the owner in order to hire more staff or let staff go
+
+Maint
+    Miant will be a simple class that will only have interaction with the schedule that they are provided
+    after a job is done on a specififed room the maint will be able to inform the manager who will work on assigning more
+
+Cleaner
+    the cleaner will have a similar function to the maint except the cleaner will have a weekly schedule
+    the schedule will be able to be interacted with so each day the cleaner can confirm the rooms cleaned and given credit
+
+Customer
+       the cusotmer class will be a class to hold variable as guests or customers will not have any interaction with system
+Room
+    room holds the information on a specific room in the hotel and will not have any interaction in the GUI
